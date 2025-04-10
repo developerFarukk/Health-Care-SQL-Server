@@ -8,6 +8,7 @@ import cookieParser from 'cookie-parser';
 // import cron from 'node-cron'
 // import router from './app/routes';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
+import router from './app/routes';
 
 const app: Application = express();
 app.use(cors());
@@ -34,7 +35,7 @@ app.get('/', (req: Request, res: Response) => {
     })
 });
 
-// app.use('/api/v1', router);
+app.use('/api/v1', router);
 
 app.use(globalErrorHandler);
 
