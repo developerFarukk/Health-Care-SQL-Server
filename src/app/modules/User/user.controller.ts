@@ -7,9 +7,9 @@ import { userService } from "./user.sevice";
 
 const createAdmin = catchAsync(async (req: Request, res: Response ) => {
 
-    console.log(req.body);
+    // console.log(req);
 
-    const result = await userService.createAdmin(req.body);
+    const result = await userService.createAdmin(req);
 
     sendResponse(res, {
         statusCode: httpStatus.OK,
