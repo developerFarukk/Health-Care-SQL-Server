@@ -4,17 +4,21 @@ import { AdminController } from './admin.controller';
 
 const router = express.Router();
 
+
+// get all user
 router.get(
     '/',
     // auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
     AdminController.getAllAdmin
 );
 
-// router.get(
-//     '/:id',
-//     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
-//     AdminController.getByIdFromDB
-// );
+
+// get single data by ID
+router.get(
+    '/:id',
+    // auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
+    AdminController.getById
+);
 
 // router.patch(
 //     '/:id',

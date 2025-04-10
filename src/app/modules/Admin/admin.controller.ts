@@ -14,7 +14,7 @@ const getAllAdmin: RequestHandler = catchAsync(async (req: Request, res: Respons
     // console.log(req.query)
     const filters = pick(req.query, adminFilterableFields);
     const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder'])
-    console.log(options)
+    // console.log(options)
     const result = await AdminService.getAllFromDB(filters, options)
 
     sendResponse(res, {
@@ -26,17 +26,22 @@ const getAllAdmin: RequestHandler = catchAsync(async (req: Request, res: Respons
     })
 })
 
-// const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
-//     const { id } = req.params;
 
-//     const result = await AdminService.getByIdFromDB(id);
-//     sendResponse(res, {
-//         statusCode: httpStatus.OK,
-//         success: true,
-//         message: "Admin data fetched by id!",
-//         data: result
-//     });
-// })
+// get single data by ID
+const getById = catchAsync(async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    // console.log(id);
+    
+
+    const result = await AdminService.getByIdFromDB(id);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Admin data fetched by id!",
+        data: result
+    });
+})
 
 
 // const updateIntoDB = catchAsync(async (req: Request, res: Response) => {
@@ -78,7 +83,7 @@ const getAllAdmin: RequestHandler = catchAsync(async (req: Request, res: Respons
 
 export const AdminController = {
     getAllAdmin,
-    // getByIdFromDB,
+    getById,
     // updateIntoDB,
     // deleteFromDB,
     // softDeleteFromDB
