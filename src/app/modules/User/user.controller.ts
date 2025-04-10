@@ -1,9 +1,9 @@
 
 import { Request, RequestHandler, Response } from "express";
-import { userService } from "./user.sevice";
 import httpStatus from "http-status";
 import sendResponse from "../../shared/sendResponse";
 import catchAsync from "../../shared/catchAsync";
+import { userService } from "./user.sevice";
 
 const createAdmin = catchAsync(async (req: Request, res: Response) => {
 
