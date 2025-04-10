@@ -9,7 +9,7 @@ const createAdmin = catchAsync(async (req: Request, res: Response ) => {
 
     // console.log(req);
 
-    const result = await userService.createAdmin(req);
+    const result = await userService.createAdminIntoDB(req);
 
     sendResponse(res, {
         statusCode: httpStatus.OK,

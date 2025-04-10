@@ -5,7 +5,7 @@ import { Request } from "express";
 import prisma from "../../shared/prisma";
 
 
-const createAdmin = async (
+const createAdminIntoDB = async (
     req: Request
 ): Promise<Admin> => {
     console.log(req.body);
@@ -49,5 +49,5 @@ const createAdmin = async (
 
 
 export const userService = {
-    createAdmin,
+    createAdminIntoDB,
 }
