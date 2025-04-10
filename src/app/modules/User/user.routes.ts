@@ -2,6 +2,7 @@
 import express, { NextFunction, Request, Response } from 'express';
 import { userController } from './user.controller';
 import validateRequest from '../../middlewares/validateRequest';
+import { userValidation } from './user.validation';
 
 // import { UserRole } from '@prisma/client';
 
@@ -27,7 +28,7 @@ router.post(
     //     req.body = userValidation.createAdmin.parse(JSON.parse(req.body.data))
     //     return userController.createAdmin(req, res, next)
     // }
-    validateRequest(userValidation.updateStatus),
+    validateRequest(userValidation.createAdmin),
     userController.createAdmin
 );
 
