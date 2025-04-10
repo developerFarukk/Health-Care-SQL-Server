@@ -6,13 +6,18 @@ import httpStatus from 'http-status';
 import cookieParser from 'cookie-parser';
 // import { AppointmentService } from './app/modules/Appointment/appointment.service';
 // import cron from 'node-cron'
-// import router from './app/routes';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
 import router from './app/routes';
 
 const app: Application = express();
-app.use(cors());
+
+
+// Parser
+// app.use(express.json());
+
+app.use(cors())
 app.use(cookieParser());
+// app.use(cors({ origin: ['http://localhost:5001'], credentials: true }));
 
 //parser
 app.use(express.json());

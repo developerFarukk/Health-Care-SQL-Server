@@ -1,13 +1,15 @@
 
-import { Request, RequestHandler, Response } from "express";
+import { Request, Response } from "express";
 import httpStatus from "http-status";
 import sendResponse from "../../shared/sendResponse";
 import catchAsync from "../../shared/catchAsync";
 import { userService } from "./user.sevice";
 
-const createAdmin = catchAsync(async (req: Request, res: Response) => {
+const createAdmin = catchAsync(async (req: Request, res: Response ) => {
 
-    const result = await userService.createAdmin(req);
+    console.log(req.body);
+
+    const result = await userService.createAdmin(req.body);
 
     sendResponse(res, {
         statusCode: httpStatus.OK,

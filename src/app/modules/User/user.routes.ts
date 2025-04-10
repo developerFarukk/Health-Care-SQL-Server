@@ -28,7 +28,7 @@ router.post(
     //     req.body = userValidation.createAdmin.parse(JSON.parse(req.body.data))
     //     return userController.createAdmin(req, res, next)
     // }
-    validateRequest(userValidation.createAdmin),
+    // validateRequest(userValidation.createAdmin),
     userController.createAdmin
 );
 
