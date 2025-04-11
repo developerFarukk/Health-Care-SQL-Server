@@ -38,10 +38,12 @@ router.delete(
     AdminController.deleteAdmin
 );
 
-// router.delete(
-//     '/soft/:id',
-//     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
-//     AdminController.softDeleteFromDB
-// );
+
+// soft delete route
+router.delete(
+    '/soft/:id',
+    // auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
+    AdminController.softDelete
+);
 
 export const AdminRoutes = router;
