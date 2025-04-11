@@ -30,11 +30,13 @@ router.patch(
     AdminController.updateAdmin
 );
 
-// router.delete(
-//     '/:id',
-//     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
-//     AdminController.deleteFromDB
-// );
+
+// delete admin route
+router.delete(
+    '/:id',
+    // auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
+    AdminController.deleteAdmin
+);
 
 // router.delete(
 //     '/soft/:id',

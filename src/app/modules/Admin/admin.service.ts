@@ -109,32 +109,34 @@ const updateIntoDB = async (id: string, data: Partial<Admin>): Promise<Admin> =>
     return result;
 };
 
-// const deleteFromDB = async (id: string): Promise<Admin | null> => {
 
-//     await prisma.admin.findUniqueOrThrow({
-//         where: {
-//             id
-//         }
-//     });
+// delete admin data
+const deleteFromDB = async (id: string): Promise<Admin | null> => {
 
-//     const result = await prisma.$transaction(async (transactionClient) => {
-//         const adminDeletedData = await transactionClient.admin.delete({
-//             where: {
-//                 id
-//             }
-//         });
+    await prisma.admin.findUniqueOrThrow({
+        where: {
+            id
+        }
+    });
 
-//         await transactionClient.user.delete({
-//             where: {
-//                 email: adminDeletedData.email
-//             }
-//         });
+    const result = await prisma.$transaction(async (transactionClient) => {
+        const adminDeletedData = await transactionClient.admin.delete({
+            where: {
+                id
+            }
+        });
 
-//         return adminDeletedData;
-//     });
+        await transactionClient.user.delete({
+            where: {
+                email: adminDeletedData.email
+            }
+        });
 
-//     return result;
-// }
+        return adminDeletedData;
+    });
+
+    return result;
+}
 
 
 // const softDeleteFromDB = async (id: string): Promise<Admin | null> => {
@@ -175,6 +177,6 @@ export const AdminService = {
     getAllFromDB,
     getByIdFromDB,
     updateIntoDB,
-    // deleteFromDB,
+    deleteFromDB,
     // softDeleteFromDB
 }
