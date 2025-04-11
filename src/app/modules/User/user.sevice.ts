@@ -8,7 +8,7 @@ import prisma from "../../shared/prisma";
 const createAdminIntoDB = async (
     req: Request
 ): Promise<Admin> => {
-    console.log(req.body);
+    // console.log(req.body);
     
 
     // const file = req.file as IFile;

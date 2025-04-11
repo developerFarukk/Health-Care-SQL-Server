@@ -36,7 +36,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req: Request, res: Response) => {
     res.send({
-        Message: "Health care server.."
+        success: true,
+        Message: "Running Health care server.."
     })
 });
 

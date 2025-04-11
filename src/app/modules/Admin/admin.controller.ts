@@ -33,7 +33,6 @@ const getById = catchAsync(async (req: Request, res: Response) => {
 
     // console.log(id);
     
-
     const result = await AdminService.getByIdFromDB(id);
     sendResponse(res, {
         statusCode: httpStatus.OK,

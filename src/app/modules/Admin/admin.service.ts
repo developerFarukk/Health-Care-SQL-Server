@@ -1,6 +1,6 @@
 
 
-import {  Admin, Prisma } from "@prisma/client";
+import { Admin, Prisma } from "@prisma/client";
 import prisma from "../../shared/prisma";
 import { IAdminFilterRequest } from "./admin.interface";
 import { IPaginationOptions } from "../../interfaces/pagination";
@@ -74,23 +74,21 @@ const getAllFromDB = async (params: IAdminFilterRequest, options: IPaginationOpt
 
 // get single data by id
 const getByIdFromDB = async (id: string): Promise<Admin | null> => {
-    
+
     const result = await prisma.admin.findUnique({
         where: {
             id,
             isDeleted: false
         }
-    })
+    });
 
-    console.log(result);
-    
-
-    // if (!result) {
-    //     throw new ApiError(httpStatus.BAD_REQUEST, 'User ID not found');
-    // }
+    if (!result) {
+        throw new ApiError(httpStatus.BAD_REQUEST, 'User ID not found');
+    }
 
     return result;
 };
+
 
 // const updateIntoDB = async (id: string, data: Partial<Admin>): Promise<Admin> => {
 //     await prisma.admin.findUniqueOrThrow({
