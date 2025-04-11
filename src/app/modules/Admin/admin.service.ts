@@ -90,23 +90,24 @@ const getByIdFromDB = async (id: string): Promise<Admin | null> => {
 };
 
 
-// const updateIntoDB = async (id: string, data: Partial<Admin>): Promise<Admin> => {
-//     await prisma.admin.findUniqueOrThrow({
-//         where: {
-//             id,
-//             isDeleted: false
-//         }
-//     });
+// Update admin data
+const updateIntoDB = async (id: string, data: Partial<Admin>): Promise<Admin> => {
+    await prisma.admin.findUniqueOrThrow({
+        where: {
+            id,
+            isDeleted: false
+        }
+    });
 
-//     const result = await prisma.admin.update({
-//         where: {
-//             id
-//         },
-//         data
-//     });
+    const result = await prisma.admin.update({
+        where: {
+            id
+        },
+        data
+    });
 
-//     return result;
-// };
+    return result;
+};
 
 // const deleteFromDB = async (id: string): Promise<Admin | null> => {
 
@@ -173,7 +174,7 @@ const getByIdFromDB = async (id: string): Promise<Admin | null> => {
 export const AdminService = {
     getAllFromDB,
     getByIdFromDB,
-    // updateIntoDB,
+    updateIntoDB,
     // deleteFromDB,
     // softDeleteFromDB
 }
