@@ -1,15 +1,52 @@
 
 
-import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
+// import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
 
-const generateToken = (payload: any, secret: Secret, expiresIn: string) => {
+// const generateToken = (
+//     payload: any, 
+//     // jwtPayload: { userId: string; role: string },
+//     secret: Secret, 
+//     expiresIn: string
+// ) => {
+//     const token = jwt.sign(
+//         payload,
+//         // jwtPayload,
+//         secret,
+//         {
+//             algorithm: 'HS256',
+//             expiresIn
+//         }
+//     );
+
+//     return token;
+// };
+
+// const verifyToken = (token: string, secret: Secret) => {
+//     return jwt.verify(token, secret) as JwtPayload;
+// }
+
+// export const jwtHelpers = {
+//     generateToken,
+//     verifyToken
+// }
+
+
+import jwt, { JwtPayload, Secret, SignOptions } from 'jsonwebtoken';
+
+const generateToken = (
+    payload: any,
+    secret: Secret,
+    expiresIn: string
+) => {
+    const options: SignOptions = {
+        algorithm: 'HS256',
+        expiresIn: expiresIn
+    };
+
     const token = jwt.sign(
         payload,
         secret,
-        {
-            algorithm: 'HS256',
-            expiresIn
-        }
+        options
     );
 
     return token;
@@ -22,4 +59,4 @@ const verifyToken = (token: string, secret: Secret) => {
 export const jwtHelpers = {
     generateToken,
     verifyToken
-}
+};
