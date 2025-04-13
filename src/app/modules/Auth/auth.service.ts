@@ -5,6 +5,9 @@ import * as bcrypt from 'bcrypt'
 import ApiError from "../../errors/ApiError";
 import httpStatus from "http-status";
 import prisma from "../../shared/prisma";
+import { jwtHelpers } from "../../helpars/jwtHelpers";
+import config from "../../config";
+import { Secret } from "jsonwebtoken";
 
 const loginUser = async (payload: {
     email: string,
