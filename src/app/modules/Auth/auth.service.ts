@@ -54,7 +54,7 @@ const refreshToken = async (token: string) => {
         decodedData = jwtHelpers.verifyToken(token, config.jwt.refresh_token_secret as Secret);
     }
     catch (err) {
-        throw new Error("You are not authorized!")
+        throw new ApiError(httpStatus.UNAUTHORIZED, 'You are not authorized!');
     }
 
     const userData = await prisma.user.findUniqueOrThrow({
