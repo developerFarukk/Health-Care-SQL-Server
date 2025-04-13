@@ -32,10 +32,11 @@ router.post(
     AuthController.changePassword
 );
 
-// router.post(
-//     '/forgot-password',
-//     AuthController.forgotPassword
-// );
+// forget password route
+router.post(
+    '/forgot-password',
+    AuthController.forgotPassword
+);
 
 // router.post(
 //     '/reset-password',
