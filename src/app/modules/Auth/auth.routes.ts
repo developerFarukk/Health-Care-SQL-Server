@@ -19,6 +19,8 @@ router.post(
     AuthController.refreshToken
 )
 
+
+// change password route
 router.post(
     '/change-password',
     auth(

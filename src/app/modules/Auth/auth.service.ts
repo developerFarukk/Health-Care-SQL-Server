@@ -79,36 +79,38 @@ const refreshToken = async (token: string) => {
 
 };
 
-// const changePassword = async (user: any, payload: any) => {
-//     const userData = await prisma.user.findUniqueOrThrow({
-//         where: {
-//             email: user.email,
-//             status: UserStatus.ACTIVE
-//         }
-//     });
 
-//     const isCorrectPassword: boolean = await bcrypt.compare(payload.oldPassword, userData.password);
+// Password change 
+const changePasswordIntoDB = async (user: any, payload: any) => {
+    const userData = await prisma.user.findUniqueOrThrow({
+        where: {
+            email: user.email,
+            status: UserStatus.ACTIVE
+        }
+    });
 
-//     if (!isCorrectPassword) {
-//         throw new Error("Password incorrect!")
-//     }
+    const isCorrectPassword: boolean = await bcrypt.compare(payload.oldPassword, userData.password);
 
-//     const hashedPassword: string = await bcrypt.hash(payload.newPassword, 12);
+    if (!isCorrectPassword) {
+        throw new Error("Password incorrect!")
+    }
 
-//     await prisma.user.update({
-//         where: {
-//             email: userData.email
-//         },
-//         data: {
-//             password: hashedPassword,
-//             needPasswordChange: false
-//         }
-//     })
+    const hashedPassword: string = await bcrypt.hash(payload.newPassword, 12);
 
-//     return {
-//         message: "Password changed successfully!"
-//     }
-// };
+    await prisma.user.update({
+        where: {
+            email: userData.email
+        },
+        data: {
+            password: hashedPassword,
+            needPasswordChange: false
+        }
+    })
+
+    return {
+        message: "Password changed successfully!"
+    }
+};
 
 // const forgotPassword = async (payload: { email: string }) => {
 //     const userData = await prisma.user.findUniqueOrThrow({
@@ -179,7 +181,7 @@ const refreshToken = async (token: string) => {
 export const AuthServices = {
     loginUser,
     refreshToken,
-    // changePassword,
+    changePasswordIntoDB,
     // forgotPassword,
     // resetPassword
 }
