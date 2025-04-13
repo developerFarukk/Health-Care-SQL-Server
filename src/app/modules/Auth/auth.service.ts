@@ -95,6 +95,7 @@ const changePasswordIntoDB = async (user: any, payload: any) => {
         throw new Error("Password incorrect!")
     }
 
+    // const saltRounds = config.bcript_solt_round;
     const hashedPassword: string = await bcrypt.hash(payload.newPassword, 12);
 
     await prisma.user.update({
