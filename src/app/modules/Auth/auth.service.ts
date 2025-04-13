@@ -128,7 +128,7 @@ const forgotPasswordIntoDB = async (payload: { email: string }) => {
         config.jwt.reset_pass_secret as Secret,
         config.jwt.reset_pass_token_expires_in as string
     )
-    console.log(resetPassToken)
+    // console.log(resetPassToken)
 
     const resetPassLink = config.reset_pass_link + `?userId=${userData.id}&token=${resetPassToken}`
 
@@ -148,7 +148,7 @@ const forgotPasswordIntoDB = async (payload: { email: string }) => {
         </div>
         `
     )
-    console.log(resetPassLink)
+    // console.log(resetPassLink)
 };
 
 // const resetPassword = async (token: string, payload: { id: string, password: string }) => {
