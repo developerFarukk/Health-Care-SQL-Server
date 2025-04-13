@@ -12,10 +12,11 @@ router.post(
     AuthController.loginUser
 );
 
-// router.post(
-//     '/refresh-token',
-//     AuthController.refreshToken
-// )
+// refress token
+router.post(
+    '/refresh-token',
+    AuthController.refreshToken
+)
 
 // router.post(
 //     '/change-password',
