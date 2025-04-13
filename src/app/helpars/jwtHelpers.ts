@@ -1,42 +1,11 @@
 
 
-// import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
-
-// const generateToken = (
-//     payload: any, 
-//     // jwtPayload: { userId: string; role: string },
-//     secret: Secret, 
-//     expiresIn: string
-// ) => {
-//     const token = jwt.sign(
-//         payload,
-//         // jwtPayload,
-//         secret,
-//         {
-//             algorithm: 'HS256',
-//             expiresIn
-//         }
-//     );
-
-//     return token;
-// };
-
-// const verifyToken = (token: string, secret: Secret) => {
-//     return jwt.verify(token, secret) as JwtPayload;
-// }
-
-// export const jwtHelpers = {
-//     generateToken,
-//     verifyToken
-// }
-
-
 import jwt, { JwtPayload, Secret, SignOptions } from 'jsonwebtoken';
 
 const generateToken = (
-    payload: any,
+    payload: Record<string, any>,
     secret: Secret,
-    expiresIn: string
+    expiresIn: any
 ) => {
     const options: SignOptions = {
         algorithm: 'HS256',
@@ -54,7 +23,7 @@ const generateToken = (
 
 const verifyToken = (token: string, secret: Secret) => {
     return jwt.verify(token, secret) as JwtPayload;
-}
+};
 
 export const jwtHelpers = {
     generateToken,
