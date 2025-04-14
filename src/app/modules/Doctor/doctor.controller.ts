@@ -9,7 +9,7 @@ import sendResponse from '../../shared/sendResponse';
 
 
 // get all Doctor data
-const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
+const getAllDoctor = catchAsync(async (req: Request, res: Response) => {
     const filters = pick(req.query, doctorFilterableFields);
 
     const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
@@ -26,7 +26,7 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
 });
 
 // get Single Doctor data
-const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
+const getByIdOfDoctor = catchAsync(async (req: Request, res: Response) => {
     const { id } = req.params;
     const result = await DoctorService.getByIdFromDB(id);
     sendResponse(res, {
@@ -37,18 +37,19 @@ const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
-// const updateIntoDB = catchAsync(async (req: Request, res: Response) => {
+// Update Doctor data
+const updateDoctor = catchAsync(async (req: Request, res: Response) => {
 
-//     const { id } = req.params;
-//     const result = await DoctorService.updateIntoDB(id, req.body);
+    const { id } = req.params;
+    const result = await DoctorService.updateIntoDB(id, req.body);
 
-//     sendResponse(res, {
-//         statusCode: httpStatus.OK,
-//         success: true,
-//         message: "Doctor data updated!",
-//         data: result
-//     })
-// });
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Doctor data updated!",
+        data: result
+    })
+});
 
 // const deleteFromDB = catchAsync(async (req: Request, res: Response) => {
 //     const { id } = req.params;
@@ -75,9 +76,9 @@ const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
 
 
 export const DoctorController = {
-    // updateIntoDB,
-    getAllFromDB,
-    getByIdFromDB,
+    updateDoctor,
+    getAllDoctor,
+    getByIdOfDoctor,
     // deleteFromDB,
     // softDelete
 }
