@@ -1,8 +1,9 @@
 
 
-import {  Prisma, UserStatus } from "@prisma/client";
 
+import { Doctor, Prisma, UserStatus } from "@prisma/client";
 
+// get all 
 const getAllFromDB = async (
     filters: IDoctorFilterRequest,
     options: IPaginationOptions,
@@ -212,7 +213,7 @@ const getAllFromDB = async (
 
 
 export const DoctorService = {
-    updateIntoDB,
+    // updateIntoDB,
     getAllFromDB,
     // getByIdFromDB,
     // deleteFromDB,
