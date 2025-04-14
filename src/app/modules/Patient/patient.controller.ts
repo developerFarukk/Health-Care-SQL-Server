@@ -23,18 +23,19 @@ const getAllPatient = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
-// const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
+// get Single patient
+const getBySinglePatient = catchAsync(async (req: Request, res: Response) => {
 
-//     const { id } = req.params;
-//     const result = await PatientService.getByIdFromDB(id);
+    const { id } = req.params;
+    const result = await PatientService.getByPatientIdFromDB(id);
 
-//     sendResponse(res, {
-//         statusCode: httpStatus.OK,
-//         success: true,
-//         message: 'Patient retrieval successfully',
-//         data: result,
-//     });
-// });
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'Patient retrieval successfully',
+        data: result,
+    });
+});
 
 // const updateIntoDB = catchAsync(async (req: Request, res: Response) => {
 //     const { id } = req.params;
@@ -73,7 +74,7 @@ const getAllPatient = catchAsync(async (req: Request, res: Response) => {
 
 export const PatientController = {
     getAllPatient,
-    // getByIdFromDB,
+    getBySinglePatient,
     // updateIntoDB,
     // deleteFromDB,
     // softDelete,

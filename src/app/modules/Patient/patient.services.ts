@@ -1,10 +1,12 @@
 
-import { Prisma } from "@prisma/client";
+import { Patient, Prisma } from "@prisma/client";
 import { paginationHelper } from "../../helpars/paginationHelper";
 import { IPaginationOptions } from "../../interfaces/pagination";
 import { patientSearchableFields } from "./patient.constants";
 import prisma from "../../shared/prisma";
 import { IPatientFilterRequest } from "./patient.interface";
+import ApiError from "../../errors/ApiError";
+import httpStatus from 'http-status';
 
 
 
@@ -76,19 +78,26 @@ const getAllPatientIntoFromDB = async (
     };
 };
 
-// const getByIdFromDB = async (id: string): Promise<Patient | null> => {
-//     const result = await prisma.patient.findUnique({
-//         where: {
-//             id,
-//             isDeleted: false,
-//         },
-//         include: {
-//             medicalReport: true,
-//             patientHealthData: true,
-//         },
-//     });
-//     return result;
-// };
+
+// get single Patient Data
+const getByPatientIdFromDB = async (id: string): Promise<Patient | null> => {
+    const result = await prisma.patient.findUnique({
+        where: {
+            id,
+            isDeleted: false,
+        },
+        include: {
+            medicalReport: true,
+            patientHealthData: true,
+        },
+    });
+
+    if (!result) {
+        throw new ApiError(httpStatus.BAD_REQUEST, 'Patient ID not found');
+    }
+
+    return result;
+};
 
 // const updateIntoDB = async (id: string, payload: Partial<IPatientUpdate>): Promise<Patient | null> => {
 
@@ -205,7 +214,7 @@ const getAllPatientIntoFromDB = async (
 
 export const PatientService = {
     getAllPatientIntoFromDB,
-    // getByIdFromDB,
+    getByPatientIdFromDB
     // updateIntoDB,
     // deleteFromDB,
     // softDelete,

@@ -11,10 +11,11 @@ router.get(
     PatientController.getAllPatient
 );
 
-// router.get(
-//     '/:id',
-//     PatientController.getByIdFromDB
-// );
+// get single patient route
+router.get(
+    '/:id',
+    PatientController.getBySinglePatient
+);
 
 // router.patch(
 //     '/:id',
