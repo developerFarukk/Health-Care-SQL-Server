@@ -15,12 +15,12 @@ router.get(
     userController.getAllUser
 );
 
-
-// router.get(
-//     '/me',
-//     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN, UserRole.DOCTOR, UserRole.PATIENT),
-//     userController.getMyProfile
-// )
+// Get My Profile
+router.get(
+    '/me',
+    auth(UserRole.SUPER_ADMIN, UserRole.ADMIN, UserRole.DOCTOR, UserRole.PATIENT),
+    userController.getMyProfile
+)
 
 
 // create admin

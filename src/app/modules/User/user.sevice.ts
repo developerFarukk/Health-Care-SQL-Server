@@ -6,6 +6,7 @@ import prisma from "../../shared/prisma";
 import { IPaginationOptions } from "../../interfaces/pagination";
 import { paginationHelper } from "../../helpars/paginationHelper";
 import { userSearchAbleFields } from "./user.constant";
+import { IAuthUser } from "../../interfaces/common";
 
 // Create admin
 const createAdminIntoDB = async (
@@ -218,7 +219,7 @@ const changeProfileStatusIntoDB = async (id: string, status: UserRole) => {
 
 
 // Get Me Profile
-const getMyProfile = async (user: IAuthUser) => {
+const getMyProfileintoDB = async (user: IAuthUser) => {
 
     const userInfo = await prisma.user.findUniqueOrThrow({
         where: {
@@ -274,5 +275,6 @@ export const userService = {
     createDoctorIntoDB,
     createPatientIntoDB,
     getAllFromDB,
-    changeProfileStatusIntoDB
+    changeProfileStatusIntoDB,
+    getMyProfileintoDB
 }
