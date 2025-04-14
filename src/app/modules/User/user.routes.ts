@@ -22,6 +22,8 @@ const router = express.Router();
 //     userController.getMyProfile
 // )
 
+
+// create admin
 router.post(
     "/create-admin",
     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
@@ -34,12 +36,15 @@ router.post(
     userController.createAdmin
 );
 
+
+// Create Doctor route
 router.post(
     "/create-doctor",
     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
     // fileUploader.upload.single('file'),
     // (req: Request, res: Response, next: NextFunction) => {
-    //     req.body = userValidation.createDoctor.parse(JSON.parse(req.body.data))
+    //     req.body = userValidation.createDoctorValidation.parse(JSON.parse(req.body.data))
+    //     // req.body = validateRequest(userValidation.createDoctorValidation.parse(JSON.parse(req.body.data)))
     //     return userController.createDoctor(req, res, next)
     // }
     // validateRequest(userValidation.createDoctorValidation),

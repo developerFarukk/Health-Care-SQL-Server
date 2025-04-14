@@ -23,7 +23,7 @@ const createAdmin = catchAsync(async (req: Request, res: Response ) => {
 // Create doctor
 const createDoctor = catchAsync(async (req: Request, res: Response) => {
 
-    // console.log(req.body);
+    console.log(req.body);
     
     const result = await userService.createDoctorIntoDB(req);
     sendResponse(res, {
