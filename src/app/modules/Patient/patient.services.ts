@@ -156,40 +156,40 @@ const updatePatientIntoDB = async (id: string, payload: Partial<IPatientUpdate>)
 
 };
 
+// deltete Patient
+const deletePatientFromDB = async (id: string): Promise<Patient | null> => {
+    const result = await prisma.$transaction(async (tx) => {
+        // delete medical report
+        await tx.medicalReport.deleteMany({
+            where: {
+                patientId: id
+            }
+        });
 
-// const deleteFromDB = async (id: string): Promise<Patient | null> => {
-//     const result = await prisma.$transaction(async (tx) => {
-//         // delete medical report
-//         await tx.medicalReport.deleteMany({
-//             where: {
-//                 patientId: id
-//             }
-//         });
+        // delete patient health data
+        await tx.patientHealthData.delete({
+            where: {
+                patientId: id
+            }
+        });
 
-//         // delete patient health data
-//         await tx.patientHealthData.delete({
-//             where: {
-//                 patientId: id
-//             }
-//         });
+        const deletedPatient = await tx.patient.delete({
+            where: {
+                id
+            }
+        });
 
-//         const deletedPatient = await tx.patient.delete({
-//             where: {
-//                 id
-//             }
-//         });
+        await tx.user.delete({
+            where: {
+                email: deletedPatient.email
+            }
+        });
 
-//         await tx.user.delete({
-//             where: {
-//                 email: deletedPatient.email
-//             }
-//         });
+        return deletedPatient;
+    });
 
-//         return deletedPatient;
-//     });
-
-//     return result;
-// };
+    return result;
+};
 
 // const softDelete = async (id: string): Promise<Patient | null> => {
 //     return await prisma.$transaction(async transactionClient => {
@@ -216,7 +216,7 @@ const updatePatientIntoDB = async (id: string, payload: Partial<IPatientUpdate>)
 export const PatientService = {
     getAllPatientIntoFromDB,
     getByPatientIdFromDB,
-    updatePatientIntoDB
-    // deleteFromDB,
+    updatePatientIntoDB,
+    deletePatientFromDB
     // softDelete,
 };

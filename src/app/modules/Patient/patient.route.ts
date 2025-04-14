@@ -2,6 +2,8 @@
 
 import express from 'express';
 import { PatientController } from './patient.controller';
+import auth from '../../middlewares/auth';
+import { UserRole } from '@prisma/client';
 
 const router = express.Router();
 
@@ -23,10 +25,14 @@ router.patch(
     PatientController.updatePatient
 );
 
-// router.delete(
-//     '/:id',
-//     PatientController.deleteFromDB
-// );
+// delete patient route
+router.delete(
+    '/:id',
+    auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
+    PatientController.deletePatient
+);
+
+
 // router.delete(
 //     '/soft/:id',
 //     PatientController.softDelete
