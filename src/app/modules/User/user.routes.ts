@@ -71,15 +71,20 @@ router.patch(
     userController.changeProfileStatus
 );
 
-// router.patch(
-//     "/update-my-profile",
-//     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN, UserRole.DOCTOR, UserRole.PATIENT),
-//     fileUploader.upload.single('file'),
-//     (req: Request, res: Response, next: NextFunction) => {
-//         req.body = JSON.parse(req.body.data)
-//         return userController.updateMyProfie(req, res, next)
-//     }
-// );
+
+// Update Profile Route
+router.patch(
+    "/update-my-profile",
+    auth(UserRole.SUPER_ADMIN, UserRole.ADMIN, UserRole.DOCTOR, UserRole.PATIENT),
+
+    // fileUploader.upload.single('file'),
+    // (req: Request, res: Response, next: NextFunction) => {
+    //     req.body = JSON.parse(req.body.data)
+    //     return userController.updateMyProfie(req, res, next)
+    // }
+
+    userController.updateMyProfie
+);
 
 
 export const userRoutes = router;

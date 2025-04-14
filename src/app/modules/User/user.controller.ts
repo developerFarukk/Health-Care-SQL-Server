@@ -98,19 +98,20 @@ const getMyProfile = catchAsync(async (req: Request & { user?: IAuthUser }, res:
     })
 });
 
-// const updateMyProfie = catchAsync(async (req: Request & { user?: IAuthUser }, res: Response) => {
+// Update Profile
+const updateMyProfie = catchAsync(async (req: Request & { user?: IAuthUser }, res: Response) => {
 
-//     const user = req.user;
+    const user = req.user;
 
-//     const result = await userService.updateMyProfie(user as IAuthUser, req);
+    const result = await userService.updateMyProfieIntoDB(user as IAuthUser, req);
 
-//     sendResponse(res, {
-//         statusCode: httpStatus.OK,
-//         success: true,
-//         message: "My profile updated!",
-//         data: result
-//     })
-// });
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "My profile updated!",
+        data: result
+    })
+});
 
 export const userController = {
     createAdmin,
@@ -119,5 +120,5 @@ export const userController = {
     getAllUser,
     changeProfileStatus,
     getMyProfile,
-    // updateMyProfie
+    updateMyProfie
 }
