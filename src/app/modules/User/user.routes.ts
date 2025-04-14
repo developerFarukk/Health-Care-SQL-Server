@@ -51,14 +51,17 @@ router.post(
     userController.createDoctor
 );
 
-// router.post(
-//     "/create-patient",
-//     fileUploader.upload.single('file'),
-//     (req: Request, res: Response, next: NextFunction) => {
-//         req.body = userValidation.createPatient.parse(JSON.parse(req.body.data))
-//         return userController.createPatient(req, res, next)
-//     }
-// );
+// Create patient Route
+router.post(
+    "/create-patient",
+    // fileUploader.upload.single('file'),
+    // (req: Request, res: Response, next: NextFunction) => {
+    //     req.body = userValidation.createPatient.parse(JSON.parse(req.body.data))
+    //     return userController.createPatient(req, res, next)
+    // }
+    // validateRequest(userValidation.createPatientValidation),
+    userController.createPatient
+);
 
 // router.patch(
 //     '/:id/status',
