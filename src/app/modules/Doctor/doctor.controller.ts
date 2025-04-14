@@ -2,9 +2,13 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import httpStatus from 'http-status';
 import catchAsync from '../../shared/catchAsync';
+import pick from '../../shared/pick';
+import { doctorFilterableFields } from './doctor.constants';
+import { DoctorService } from './doctor.service';
+import sendResponse from '../../shared/sendResponse';
 
 
-// get all
+// get all Doctor data
 const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
     const filters = pick(req.query, doctorFilterableFields);
 

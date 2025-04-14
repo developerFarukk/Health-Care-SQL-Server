@@ -5,7 +5,7 @@ import { DoctorController } from './doctor.controller';
 
 const router = express.Router();
 
-// get all
+// get all Doctor data route
 router.get('/', DoctorController.getAllFromDB);
 
 //task 4
