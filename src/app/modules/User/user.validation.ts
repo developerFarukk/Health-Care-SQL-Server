@@ -1,5 +1,5 @@
 
-import { UserStatus } from "@prisma/client";
+import { Gender, UserStatus } from "@prisma/client";
 import { z } from "zod";
 
 

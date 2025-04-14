@@ -51,6 +51,9 @@ const createAdminIntoDB = async (
 // create Doctor
 const createDoctorIntoDB = async (req: Request): Promise<Doctor> => {
 
+    console.log(req.body.doctor);
+    
+
     // const file = req.file as IFile;
 
     // if (file) {
@@ -66,17 +69,24 @@ const createDoctorIntoDB = async (req: Request): Promise<Doctor> => {
         role: UserRole.DOCTOR
     }
 
+
     const result = await prisma.$transaction(async (transactionClient) => {
+
         await transactionClient.user.create({
             data: userData
         });
+
 
         const createdDoctorData = await transactionClient.doctor.create({
             data: req.body.doctor
         });
 
+        console.log(createdDoctorData);
+        
+
         return createdDoctorData;
     });
+
 
     return result;
 };
