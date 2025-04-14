@@ -7,6 +7,8 @@ import { IPaginationOptions } from "../../interfaces/pagination";
 import { paginationHelper } from "../../helpars/paginationHelper";
 import { doctorSearchableFields } from "./doctor.constants";
 import prisma from "../../shared/prisma";
+import ApiError from "../../errors/ApiError";
+import httpStatus from 'http-status';
 
 // get all Doctor data
 const getAllFromDB = async (
@@ -98,23 +100,30 @@ const getAllFromDB = async (
     };
 };
 
-// const getByIdFromDB = async (id: string): Promise<Doctor | null> => {
-//     const result = await prisma.doctor.findUnique({
-//         where: {
-//             id,
-//             isDeleted: false,
-//         },
-//         include: {
-//             doctorSpecialties: {
-//                 include: {
-//                     specialities: true
-//                 }
-//             },
-//             review: true
-//         }
-//     });
-//     return result;
-// };
+// get single doctor data
+const getByIdFromDB = async (id: string): Promise<Doctor | null> => {
+    
+    const result = await prisma.doctor.findUnique({
+        where: {
+            id,
+            isDeleted: false,
+        },
+        include: {
+            doctorSpecialties: {
+                include: {
+                    specialities: true
+                }
+            },
+            review: true
+        }
+    });
+
+    if (!result) {
+        throw new ApiError(httpStatus.BAD_REQUEST, 'Doctor ID not found');
+    }
+
+    return result;
+};
 
 // const updateIntoDB = async (id: string, payload: IDoctorUpdate) => {
 //     const { specialties, ...doctorData } = payload;
@@ -220,7 +229,7 @@ const getAllFromDB = async (
 export const DoctorService = {
     // updateIntoDB,
     getAllFromDB,
-    // getByIdFromDB,
+    getByIdFromDB,
     // deleteFromDB,
     // softDelete
 }

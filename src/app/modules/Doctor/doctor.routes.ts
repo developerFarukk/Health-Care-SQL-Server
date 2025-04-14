@@ -8,8 +8,8 @@ const router = express.Router();
 // get all Doctor data route
 router.get('/', DoctorController.getAllFromDB);
 
-//task 4
-// router.get('/:id', DoctorController.getByIdFromDB);
+// single Doctor data route
+router.get('/:id', DoctorController.getByIdFromDB);
 
 // router.patch(
 //     '/:id',
