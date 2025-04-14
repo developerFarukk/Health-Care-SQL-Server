@@ -30,10 +30,12 @@ router.delete(
     DoctorController.deleteDoctor
 );
 
-// task 6
-// router.delete(
-//     '/soft/:id',
-//     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
-//     DoctorController.softDelete);
+// Soft delete doctor data route
+router.delete(
+    '/soft/:id',
+    auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
+    DoctorController.softDeleteDoctor);
 
+
+  
 export const DoctorRoutes = router
