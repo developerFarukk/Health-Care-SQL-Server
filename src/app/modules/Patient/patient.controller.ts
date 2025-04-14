@@ -37,17 +37,18 @@ const getBySinglePatient = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
-// const updateIntoDB = catchAsync(async (req: Request, res: Response) => {
-//     const { id } = req.params;
-//     const result = await PatientService.updateIntoDB(id, req.body);
+// Update Patient
+const updatePatient = catchAsync(async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const result = await PatientService.updatePatientIntoDB(id, req.body);
 
-//     sendResponse(res, {
-//         statusCode: httpStatus.OK,
-//         success: true,
-//         message: 'Patient updated successfully',
-//         data: result,
-//     });
-// });
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'Patient updated successfully',
+        data: result,
+    });
+});
 
 // const deleteFromDB = catchAsync(async (req: Request, res: Response) => {
 //     const { id } = req.params;
@@ -75,7 +76,7 @@ const getBySinglePatient = catchAsync(async (req: Request, res: Response) => {
 export const PatientController = {
     getAllPatient,
     getBySinglePatient,
-    // updateIntoDB,
+    updatePatient
     // deleteFromDB,
     // softDelete,
 };

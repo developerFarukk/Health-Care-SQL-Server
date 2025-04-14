@@ -17,10 +17,11 @@ router.get(
     PatientController.getBySinglePatient
 );
 
-// router.patch(
-//     '/:id',
-//     PatientController.updateIntoDB
-// );
+// Update patient route
+router.patch(
+    '/:id',
+    PatientController.updatePatient
+);
 
 // router.delete(
 //     '/:id',
