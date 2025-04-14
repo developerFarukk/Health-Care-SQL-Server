@@ -15,6 +15,7 @@ router.get(
     userController.getAllUser
 );
 
+
 // router.get(
 //     '/me',
 //     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN, UserRole.DOCTOR, UserRole.PATIENT),
@@ -62,12 +63,13 @@ router.post(
     userController.createPatient
 );
 
-// router.patch(
-//     '/:id/status',
-//     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
-//     validateRequest(userValidation.updateStatus),
-//     userController.changeProfileStatus
-// );
+// Update Profile status route
+router.patch(
+    '/:id/status',
+    auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
+    validateRequest(userValidation.updateStatusValidation),
+    userController.changeProfileStatus
+);
 
 // router.patch(
 //     "/update-my-profile",

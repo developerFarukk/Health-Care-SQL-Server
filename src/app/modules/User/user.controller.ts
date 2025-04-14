@@ -66,18 +66,20 @@ const getAllUser = catchAsync(async (req: Request, res: Response) => {
     })
 });
 
-// const changeProfileStatus = catchAsync(async (req: Request, res: Response) => {
 
-//     const { id } = req.params;
-//     const result = await userService.changeProfileStatus(id, req.body)
+// Change Profile Status
+const changeProfileStatus = catchAsync(async (req: Request, res: Response) => {
 
-//     sendResponse(res, {
-//         statusCode: httpStatus.OK,
-//         success: true,
-//         message: "Users profile status changed!",
-//         data: result
-//     })
-// });
+    const { id } = req.params;
+    const result = await userService.changeProfileStatusIntoDB(id, req.body)
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Users profile status changed!",
+        data: result
+    })
+});
 
 
 // const getMyProfile = catchAsync(async (req: Request & { user?: IAuthUser }, res: Response) => {
@@ -113,7 +115,7 @@ export const userController = {
     createDoctor,
     createPatient,
     getAllUser,
-    // changeProfileStatus,
+    changeProfileStatus,
     // getMyProfile,
     // updateMyProfie
 }
