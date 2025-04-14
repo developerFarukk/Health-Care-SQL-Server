@@ -1,4 +1,10 @@
 
+import { Prisma } from "@prisma/client";
+import { paginationHelper } from "../../helpars/paginationHelper";
+import { IPaginationOptions } from "../../interfaces/pagination";
+import { patientSearchableFields } from "./patient.constants";
+import prisma from "../../shared/prisma";
+import { IPatientFilterRequest } from "./patient.interface";
 
 
 

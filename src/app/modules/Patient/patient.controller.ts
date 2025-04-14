@@ -2,13 +2,17 @@
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 import catchAsync from '../../shared/catchAsync';
+import pick from '../../shared/pick';
+import { patientFilterableFields } from './patient.constants';
+import { PatientService } from './patient.services';
+import sendResponse from '../../shared/sendResponse';
 
 // get all patient
 const getAllPatient = catchAsync(async (req: Request, res: Response) => {
     const filters = pick(req.query, patientFilterableFields);
     const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
 
-    const result = await PatientService.getAllFromDB(filters, options);
+    const result = await PatientService.getAllPatientIntoFromDB(filters, options);
 
     sendResponse(res, {
         statusCode: httpStatus.OK,
