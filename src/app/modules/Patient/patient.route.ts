@@ -32,10 +32,11 @@ router.delete(
     PatientController.deletePatient
 );
 
-
-// router.delete(
-//     '/soft/:id',
-//     PatientController.softDelete
-// );
+// soft delete aptient route
+router.delete(
+    '/soft/:id',
+    auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
+    PatientController.softDeletePatient
+);
 
 export const PatientRoutes = router;
