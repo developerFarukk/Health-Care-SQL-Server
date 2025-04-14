@@ -23,12 +23,12 @@ router.patch(
     DoctorController.updateDoctor
 );
 
-//task 5
-// router.delete(
-//     '/:id',
-//     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
-//     DoctorController.deleteFromDB
-// );
+// Delete Docor
+router.delete(
+    '/:id',
+    auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
+    DoctorController.deleteDoctor
+);
 
 // task 6
 // router.delete(

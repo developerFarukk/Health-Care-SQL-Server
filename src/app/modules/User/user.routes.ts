@@ -5,6 +5,7 @@ import validateRequest from '../../middlewares/validateRequest';
 import { userValidation } from './user.validation';
 import auth from '../../middlewares/auth';
 import { UserRole } from '@prisma/client';
+// import { DoctorValidation } from '../Doctor/doctor.validation';
 
 const router = express.Router();
 
@@ -47,7 +48,7 @@ router.post(
     //     // req.body = validateRequest(userValidation.createDoctorValidation.parse(JSON.parse(req.body.data)))
     //     return userController.createDoctor(req, res, next)
     // }
-    // validateRequest(userValidation.createDoctorValidation),
+    // validateRequest(DoctorValidation.createDoctorValidation),
     userController.createDoctor
 );
 
