@@ -2,7 +2,9 @@
 import { UserStatus } from "@prisma/client";
 import { z } from "zod";
 
-const createAdmin = z.object({
+
+// create admin validationschema
+const createAdminValidation = z.object({
     password: z.string({
         required_error: "Password is required"
     }),
@@ -79,7 +81,7 @@ const updateStatus = z.object({
 })
 
 export const userValidation = {
-    createAdmin,
+    createAdminValidation,
     // createDoctor,
     createPatient,
     updateStatus

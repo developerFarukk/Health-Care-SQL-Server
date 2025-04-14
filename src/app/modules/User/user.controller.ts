@@ -7,7 +7,7 @@ import { userService } from "./user.sevice";
 
 const createAdmin = catchAsync(async (req: Request, res: Response ) => {
 
-    // console.log(req);
+    // console.log(req.body);
 
     const result = await userService.createAdminIntoDB(req);
 
@@ -19,16 +19,18 @@ const createAdmin = catchAsync(async (req: Request, res: Response ) => {
     })
 });
 
-// const createDoctor = catchAsync(async (req: Request, res: Response) => {
 
-//     const result = await userService.createDoctor(req);
-//     sendResponse(res, {
-//         statusCode: httpStatus.OK,
-//         success: true,
-//         message: "Doctor Created successfuly!",
-//         data: result
-//     })
-// });
+// Create doctor
+const createDoctor = catchAsync(async (req: Request, res: Response) => {
+
+    const result = await userService.createDoctorIntoDB(req);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Doctor Created successfuly!",
+        data: result
+    })
+});
 
 // const createPatient = catchAsync(async (req: Request, res: Response) => {
 
@@ -101,7 +103,7 @@ const createAdmin = catchAsync(async (req: Request, res: Response ) => {
 
 export const userController = {
     createAdmin,
-    // createDoctor,
+    createDoctor,
     // createPatient,
     // getAllFromDB,
     // changeProfileStatus,
