@@ -1,6 +1,8 @@
 
 
 import { Request } from "express";
+import { IFile } from "../../interfaces/file";
+import prisma from "../../shared/prisma";
 
 
 // Create Scecialist
