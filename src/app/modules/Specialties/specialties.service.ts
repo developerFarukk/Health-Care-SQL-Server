@@ -4,6 +4,7 @@ import { Request } from "express";
 import { IFile } from "../../interfaces/file";
 import prisma from "../../shared/prisma";
 import { fileUploader } from "../../helpars/fileUploader";
+import { Specialties } from "@prisma/client";
 
 
 // Create Scecialist
@@ -23,9 +24,10 @@ const insertSpecialistIntoDB = async (req: Request) => {
     return result;
 };
 
-// const getAllFromDB = async (): Promise<Specialties[]> => {
-//     return await prisma.specialties.findMany();
-// }
+// get all Specialist
+const getAllspecialistFromDB = async (): Promise<Specialties[]> => {
+    return await prisma.specialties.findMany();
+}
 
 // const deleteFromDB = async (id: string): Promise<Specialties> => {
 //     const result = await prisma.specialties.delete({
@@ -38,6 +40,6 @@ const insertSpecialistIntoDB = async (req: Request) => {
 
 export const SpecialtiesService = {
     insertSpecialistIntoDB,
-    // getAllFromDB,
+    getAllspecialistFromDB
     // deleteFromDB
 }

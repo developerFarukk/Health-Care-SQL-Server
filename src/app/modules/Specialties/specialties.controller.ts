@@ -20,15 +20,16 @@ const insertSpesialist = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
-// const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
-//     const result = await SpecialtiesService.getAllFromDB();
-//     sendResponse(res, {
-//         statusCode: httpStatus.OK,
-//         success: true,
-//         message: 'Specialties data fetched successfully',
-//         data: result,
-//     });
-// });
+// get all Specialist
+const getAllSpecilist = catchAsync(async (req: Request, res: Response) => {
+    const result = await SpecialtiesService.getAllspecialistFromDB();
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'All Specialties data fetched successfully',
+        data: result,
+    });
+});
 
 // const deleteFromDB = catchAsync(async (req: Request, res: Response) => {
 //     const { id } = req.params;
@@ -43,6 +44,6 @@ const insertSpesialist = catchAsync(async (req: Request, res: Response) => {
 
 export const SpecialtiesController = {
     insertSpesialist,
-    // getAllFromDB,
+    getAllSpecilist,
     // deleteFromDB
 };

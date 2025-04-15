@@ -16,10 +16,12 @@ const router = express.Router();
 - Implement an HTTP GET endpoint returning specialties in JSON format.
 - ENDPOINT: /specialties
 */
-// router.get(
-//     '/',
-//     SpecialtiesController.getAllFromDB
-// );
+
+// All Specialist route
+router.get(
+    '/',
+    SpecialtiesController.getAllSpecilist
+);
 
 
 // Speciality create route
