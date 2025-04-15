@@ -1,5 +1,8 @@
 
 import express, { NextFunction, Request, Response } from 'express';
+import { fileUploader } from '../../helpars/fileUploader';
+import { SpecialtiesValidtaion } from './specialties.validation';
+import { SpecialtiesController } from './specialties.controller';
 
 
 
@@ -22,8 +25,8 @@ router.post(
     '/',
     fileUploader.upload.single('file'),
     (req: Request, res: Response, next: NextFunction) => {
-        req.body = SpecialtiesValidtaion.create.parse(JSON.parse(req.body.data))
-        return SpecialtiesController.inserIntoDB(req, res, next)
+        req.body = SpecialtiesValidtaion.createSpecialistValidation.parse(JSON.parse(req.body.data))
+        return SpecialtiesController.inserSpesialist(req, res, next)
     }
 );
 

@@ -3,6 +3,7 @@
 import { Request } from "express";
 import { IFile } from "../../interfaces/file";
 import prisma from "../../shared/prisma";
+import { fileUploader } from "../../helpars/fileUploader";
 
 
 // Create Scecialist

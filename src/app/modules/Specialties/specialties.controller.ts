@@ -8,7 +8,7 @@ import sendResponse from "../../shared/sendResponse";
 
 
 // Create Spetialist
-const inserIntoDB = catchAsync(async (req: Request, res: Response) => {
+const inserSpesialist = catchAsync(async (req: Request, res: Response) => {
     console.log(req.body)
     const result = await SpecialtiesService.inserSpecialistIntoDB(req);
 
@@ -42,7 +42,7 @@ const inserIntoDB = catchAsync(async (req: Request, res: Response) => {
 // });
 
 export const SpecialtiesController = {
-    inserIntoDB,
+    inserSpesialist,
     // getAllFromDB,
     // deleteFromDB
 };
