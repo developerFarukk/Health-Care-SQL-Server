@@ -24,7 +24,7 @@ const router = express.Router();
 // );
 
 router.post(
-    '/',
+    '/create-schedule',
     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
     ScheduleController.inserIntoDB
 );

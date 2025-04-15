@@ -1,6 +1,11 @@
 
 import { addHours, addMinutes, format } from 'date-fns';
+import { ISchedule } from './schedule.interface';
+import { Schedule } from '@prisma/client';
+import prisma from '../../shared/prisma';
 
+
+// Convert time
 const convertDateTime = async (date: Date) => {
     const offset = date.getTimezoneOffset() * 60000;
     return new Date(date.getTime() + offset);
