@@ -6,11 +6,13 @@ import { UserRole } from '@prisma/client';
 
 const router = express.Router();
 
-// router.get(
-//     '/',
-//     auth(UserRole.DOCTOR),
-//     ScheduleController.getAllFromDB
-// );
+
+// get all schedule route
+router.get(
+    '/',
+    auth(UserRole.DOCTOR),
+    ScheduleController.getAllSchedule
+);
 
 /**
  * API ENDPOINT: /schedule/:id
@@ -26,7 +28,7 @@ const router = express.Router();
 router.post(
     '/create-schedule',
     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
-    ScheduleController.inserIntoDB
+    ScheduleController.inserSchedule
 );
 
 
