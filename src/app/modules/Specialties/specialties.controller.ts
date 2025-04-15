@@ -10,7 +10,7 @@ import sendResponse from "../../shared/sendResponse";
 // Create Spetialist
 const insertSpesialist = catchAsync(async (req: Request, res: Response) => {
     console.log(req.body)
-    const result = await SpecialtiesService.inserSpecialistIntoDB(req);
+    const result = await SpecialtiesService.insertSpecialistIntoDB(req);
 
     sendResponse(res, {
         statusCode: httpStatus.OK,

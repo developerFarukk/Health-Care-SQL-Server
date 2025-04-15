@@ -21,6 +21,7 @@ const router = express.Router();
 //     SpecialtiesController.getAllFromDB
 // );
 
+
 // Speciality create route
 router.post(
     '/create-speciality',

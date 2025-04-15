@@ -7,7 +7,7 @@ import { fileUploader } from "../../helpars/fileUploader";
 
 
 // Create Scecialist
-const inserSpecialistIntoDB = async (req: Request) => {
+const insertSpecialistIntoDB = async (req: Request) => {
 
     const file = req.file as IFile;
 
@@ -37,7 +37,7 @@ const inserSpecialistIntoDB = async (req: Request) => {
 // };
 
 export const SpecialtiesService = {
-    inserSpecialistIntoDB,
+    insertSpecialistIntoDB,
     // getAllFromDB,
     // deleteFromDB
 }
