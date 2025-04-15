@@ -21,12 +21,13 @@ const router = express.Router();
 //     SpecialtiesController.getAllFromDB
 // );
 
+// Speciality create route
 router.post(
-    '/',
+    '/create-speciality',
     fileUploader.upload.single('file'),
     (req: Request, res: Response, next: NextFunction) => {
         req.body = SpecialtiesValidtaion.createSpecialistValidation.parse(JSON.parse(req.body.data))
-        return SpecialtiesController.inserSpesialist(req, res, next)
+        return SpecialtiesController.insertSpesialist(req, res, next)
     }
 );
 
