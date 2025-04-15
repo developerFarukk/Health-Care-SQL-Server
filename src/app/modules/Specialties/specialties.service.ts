@@ -29,17 +29,18 @@ const getAllspecialistFromDB = async (): Promise<Specialties[]> => {
     return await prisma.specialties.findMany();
 }
 
-// const deleteFromDB = async (id: string): Promise<Specialties> => {
-//     const result = await prisma.specialties.delete({
-//         where: {
-//             id,
-//         },
-//     });
-//     return result;
-// };
+//  delete speatilest
+const deleteSpecialistFromDB = async (id: string): Promise<Specialties> => {
+    const result = await prisma.specialties.delete({
+        where: {
+            id,
+        },
+    });
+    return result;
+};
 
 export const SpecialtiesService = {
     insertSpecialistIntoDB,
-    getAllspecialistFromDB
-    // deleteFromDB
+    getAllspecialistFromDB,
+    deleteSpecialistFromDB
 }

@@ -3,6 +3,8 @@ import express, { NextFunction, Request, Response } from 'express';
 import { fileUploader } from '../../helpars/fileUploader';
 import { SpecialtiesValidtaion } from './specialties.validation';
 import { SpecialtiesController } from './specialties.controller';
+import auth from '../../middlewares/auth';
+import { UserRole } from '@prisma/client';
 
 
 
@@ -45,10 +47,11 @@ router.post(
 - ENDPOINT: /specialties/:id
 */
 
-// router.delete(
-//     '/:id',
-//     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
-//     SpecialtiesController.deleteFromDB
-// );
+// delete spelist
+router.delete(
+    '/:id',
+    auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
+    SpecialtiesController.deleteSpecilist
+);
 
 export const SpecialtiesRoutes = router;
