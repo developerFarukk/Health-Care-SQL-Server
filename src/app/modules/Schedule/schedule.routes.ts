@@ -47,7 +47,15 @@ router.post(
 router.delete(
     '/:id',
     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
-    ScheduleController.deleteSchedule
+    ScheduleController.deleteScheduleID
+);
+
+
+//  all delete schedule route
+router.delete(
+    '/',
+    auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
+    ScheduleController.deleteAllSchedules
 );
 
 export const ScheduleRoutes = router;

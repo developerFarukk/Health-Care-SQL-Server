@@ -203,10 +203,25 @@ const deleteScheduleFromDB = async (id: string): Promise<Schedule> => {
     return result;
 };
 
+// all schedule data delete/drop
+const deleteAllSchedulesFromDB = async (): Promise<{ count: number }> => {
+
+    const totalSchedules = await prisma.schedule.count();
+
+    if (totalSchedules === 0) {
+        return { count: 0 };
+    }
+
+    const result = await prisma.schedule.deleteMany({});
+    
+    return result;
+};
+
 
 export const ScheduleService = {
     inserScheduleIntoDB,
     getAllScheduleFromDB,
     getByScheduleIdFromDB,
-    deleteScheduleFromDB
+    deleteScheduleFromDB,
+    deleteAllSchedulesFromDB
 }

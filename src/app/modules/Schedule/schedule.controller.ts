@@ -50,7 +50,7 @@ const getByScheduleID = catchAsync(async (req: Request, res: Response) => {
 
 
 // delete schedule
-const deleteSchedule = catchAsync(async (req: Request, res: Response) => {
+const deleteScheduleID = catchAsync(async (req: Request, res: Response) => {
     const { id } = req.params;
     const result = await ScheduleService.deleteScheduleFromDB(id);
     sendResponse(res, {
@@ -62,9 +62,23 @@ const deleteSchedule = catchAsync(async (req: Request, res: Response) => {
 });
 
 
+// drop schedule all data
+const deleteAllSchedules = catchAsync(async (req: Request, res: Response) => {
+    
+    const result = await ScheduleService.deleteAllSchedulesFromDB();
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'All schedules deleted successfully',
+        data: result,
+    });
+});
+
+
 export const ScheduleController = {
     inserSchedule,
     getAllSchedule,
     getByScheduleID,
-    deleteSchedule
+    deleteScheduleID,
+    deleteAllSchedules
 };
