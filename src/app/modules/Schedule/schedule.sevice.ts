@@ -6,6 +6,8 @@ import prisma from '../../shared/prisma';
 import { IPaginationOptions } from '../../interfaces/pagination';
 import { IAuthUser } from '../../interfaces/common';
 import { paginationHelper } from '../../helpars/paginationHelper';
+import ApiError from '../../errors/ApiError';
+import httpStatus from "http-status";
 
 
 // Convert time
@@ -174,15 +176,22 @@ const getAllScheduleFromDB = async (
     };
 };
 
-// const getByIdFromDB = async (id: string): Promise<Schedule | null> => {
-//     const result = await prisma.schedule.findUnique({
-//         where: {
-//             id,
-//         },
-//     });
-//     //console.log(result?.startDateTime.getHours() + ":" + result?.startDateTime.getMinutes())
-//     return result;
-// };
+// get single Schedule
+const getByScheduleIdFromDB = async (id: string): Promise<Schedule | null> => {
+
+    const result = await prisma.schedule.findUnique({
+        where: {
+            id,
+        },
+    });
+
+    if (!result) {
+        throw new ApiError(httpStatus.BAD_REQUEST, 'Schedule ID not found');
+    }
+
+    //console.log(result?.startDateTime.getHours() + ":" + result?.startDateTime.getMinutes())
+    return result;
+};
 
 // const deleteFromDB = async (id: string): Promise<Schedule> => {
 //     const result = await prisma.schedule.delete({
@@ -197,6 +206,6 @@ const getAllScheduleFromDB = async (
 export const ScheduleService = {
     inserScheduleIntoDB,
     getAllScheduleFromDB,
-    // getByIdFromDB,
+    getByScheduleIdFromDB,
     // deleteFromDB
 }

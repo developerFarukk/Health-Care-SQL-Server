@@ -36,16 +36,17 @@ const getAllSchedule = catchAsync(async (req: Request & { user?: IAuthUser }, re
     });
 });
 
-// const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
-//     const { id } = req.params;
-//     const result = await ScheduleService.getByIdFromDB(id);
-//     sendResponse(res, {
-//         statusCode: httpStatus.OK,
-//         success: true,
-//         message: 'Schedule retrieval successfully',
-//         data: result,
-//     });
-// });
+// get single Schedule
+const getByScheduleID = catchAsync(async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const result = await ScheduleService.getByScheduleIdFromDB(id);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'Schedule retrieval successfully',
+        data: result,
+    });
+});
 
 // const deleteFromDB = catchAsync(async (req: Request, res: Response) => {
 //     const { id } = req.params;
@@ -62,6 +63,6 @@ const getAllSchedule = catchAsync(async (req: Request & { user?: IAuthUser }, re
 export const ScheduleController = {
     inserSchedule,
     getAllSchedule,
-    // getByIdFromDB,
+    getByScheduleID,
     // deleteFromDB
 };

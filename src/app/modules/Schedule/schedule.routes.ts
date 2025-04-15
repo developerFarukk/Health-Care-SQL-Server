@@ -19,12 +19,16 @@ router.get(
  * 
  * Get schedule data by id
  */
-// router.get(
-//     '/:id',
-//     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN, UserRole.DOCTOR),
-//     ScheduleController.getByIdFromDB
-// );
 
+// get schedule ID
+router.get(
+    '/:id',
+    auth(UserRole.SUPER_ADMIN, UserRole.ADMIN, UserRole.DOCTOR),
+    ScheduleController.getByScheduleID
+);
+
+
+// Create Schedule Route
 router.post(
     '/create-schedule',
     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
