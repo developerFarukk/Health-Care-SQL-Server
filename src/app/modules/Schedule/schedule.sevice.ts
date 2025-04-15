@@ -6,6 +6,7 @@ const convertDateTime = async (date: Date) => {
     return new Date(date.getTime() + offset);
 }
 
+// Add Schedule
 const inserIntoDB = async (payload: ISchedule): Promise<Schedule[]> => {
     const { startDate, endDate, startTime, endTime } = payload;
 
