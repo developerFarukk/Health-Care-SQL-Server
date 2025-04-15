@@ -167,7 +167,7 @@ const deletePatientFromDB = async (id: string): Promise<Patient | null> => {
         });
 
         // delete patient health data
-        await tx.patientHealthData.delete({
+        await tx.patientHealthData.deleteMany({
             where: {
                 patientId: id
             }

@@ -114,7 +114,7 @@ model MedicalReport {
 model PatientHealthData {
   id                  String        @id @default(uuid())
   patientId           String        @unique
-  patient             Patient       @relation(fields: [patientId], references: [id])
+  patient             Patient       @relation(fields: [patientId], references: [id], onDelete: Cascade)
   gender              Gender
   dateOfBirth         String
   bloodGroup          BloodGroup
