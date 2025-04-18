@@ -5,6 +5,7 @@ import { DoctorScheduleService } from "./doctorSchedule.service";
 import { IAuthUser } from "../../interfaces/common";
 import catchAsync from "../../shared/catchAsync";
 import sendResponse from "../../shared/sendResponse";
+import pick from "../../shared/pick";
 
 
 
@@ -22,20 +23,22 @@ const createDoctorSchedule = catchAsync(async (req: Request & { user?: IAuthUser
     });
 });
 
-// const getMySchedule = catchAsync(async (req: Request & { user?: IAuthUser }, res: Response) => {
-//     const filters = pick(req.query, ['startDate', 'endDate', 'isBooked']);
-//     const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
 
-//     const user = req.user;
-//     const result = await DoctorScheduleService.getMySchedule(filters, options, user as IAuthUser);
+// get my doctor schdule
+const getMySchedule = catchAsync(async (req: Request & { user?: IAuthUser }, res: Response) => {
+    const filters = pick(req.query, ['startDate', 'endDate', 'isBooked']);
+    const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
 
-//     sendResponse(res, {
-//         statusCode: httpStatus.OK,
-//         success: true,
-//         message: "My Schedule fetched successfully!",
-//         data: result
-//     });
-// });
+    const user = req.user;
+    const result = await DoctorScheduleService.getMyScheduleIntoDB(filters, options, user as IAuthUser);
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "My Schedule fetched successfully!",
+        data: result
+    });
+});
 
 // const deleteFromDB = catchAsync(async (req: Request & { user?: IAuthUser }, res: Response) => {
 
@@ -66,4 +69,5 @@ const createDoctorSchedule = catchAsync(async (req: Request & { user?: IAuthUser
 
 export const DoctorScheduleController = {
     createDoctorSchedule,
+    getMySchedule
 };

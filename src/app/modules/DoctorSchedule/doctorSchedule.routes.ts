@@ -20,12 +20,12 @@ const router = express.Router();
 //     DoctorScheduleController.getAllFromDB
 // );
 
-
-// router.get(
-//     '/my-schedule',
-//     auth(UserRole.DOCTOR),
-//     DoctorScheduleController.getMySchedule
-// )
+// get my schedule
+router.get(
+    '/my-schedule',
+    auth(UserRole.DOCTOR),
+    DoctorScheduleController.getMySchedule
+)
 
 
 // create Doctor Schedule rpute
