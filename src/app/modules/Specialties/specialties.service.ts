@@ -29,7 +29,7 @@ const getAllspecialistFromDB = async (): Promise<Specialties[]> => {
     return await prisma.specialties.findMany();
 }
 
-//  delete speatilest
+//  delete speatilests
 const deleteSpecialistFromDB = async (id: string): Promise<Specialties> => {
     const result = await prisma.specialties.delete({
         where: {
