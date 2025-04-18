@@ -4,6 +4,8 @@ import express from 'express';
 import { DoctorScheduleController } from './doctorSchedule.controller';
 import auth from '../../middlewares/auth';
 import { UserRole } from '@prisma/client';
+import validateRequest from '../../middlewares/validateRequest';
+import { DoctorScheduleValidation } from './doctorSchedule.validation';
 
 const router = express.Router();
 
@@ -18,18 +20,21 @@ const router = express.Router();
 //     DoctorScheduleController.getAllFromDB
 // );
 
-router.get(
-    '/my-schedule',
-    auth(UserRole.DOCTOR),
-    DoctorScheduleController.getMySchedule
-)
 
-// router.post(
-//     '/',
+// router.get(
+//     '/my-schedule',
 //     auth(UserRole.DOCTOR),
-//     validateRequest(DoctorScheduleValidation.create),
-//     DoctorScheduleController.insertIntoDB
-// );
+//     DoctorScheduleController.getMySchedule
+// )
+
+
+// create Doctor Schedule rpute
+router.post(
+    '/create-doctorschdule',
+    auth(UserRole.DOCTOR),
+    validateRequest(DoctorScheduleValidation.createDoctorShiduleValidation),
+    DoctorScheduleController.createDoctorSchedule
+);
 
 // router.delete(
 //     '/:id',
