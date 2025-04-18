@@ -41,19 +41,22 @@ const getMySchedule = catchAsync(async (req: Request & { user?: IAuthUser }, res
     });
 });
 
-// const deleteFromDB = catchAsync(async (req: Request & { user?: IAuthUser }, res: Response) => {
 
-//     const user = req.user;
-//     const { id } = req.params;
-//     const result = await DoctorScheduleService.deleteFromDB(user as IAuthUser, id);
+// deltete Doctor Schedule
+const deleteDoctorSchedule = catchAsync(async (req: Request & { user?: IAuthUser }, res: Response) => {
 
-//     sendResponse(res, {
-//         statusCode: httpStatus.OK,
-//         success: true,
-//         message: "My Schedule deleted successfully!",
-//         data: result
-//     });
-// });
+    const user = req.user;  
+    const { id } = req.params;
+    
+    const result = await DoctorScheduleService.deleteDoctorSceduleFromDB(user as IAuthUser, id);
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "My Schedule deleted successfully!",
+        data: result
+    });
+});
 
 
 // get all Doctor Schedule
@@ -73,5 +76,6 @@ const getAllDoctorShedule = catchAsync(async (req: Request, res: Response) => {
 export const DoctorScheduleController = {
     createDoctorSchedule,
     getMySchedule,
-    getAllDoctorShedule
+    getAllDoctorShedule,
+    deleteDoctorSchedule
 };

@@ -30,6 +30,7 @@ router.get(
 )
 
 
+
 // create Doctor Schedule rpute
 router.post(
     '/create-doctorschdule',
@@ -38,11 +39,14 @@ router.post(
     DoctorScheduleController.createDoctorSchedule
 );
 
-// router.delete(
-//     '/:id',
-//     auth(UserRole.DOCTOR),
-//     DoctorScheduleController.deleteFromDB
-// );
+
+// delete D. Shedule route
+router.delete(
+    '/:id',
+    auth(UserRole.DOCTOR),
+    DoctorScheduleController.deleteDoctorSchedule
+);
+
 
 
 export const DoctorScheduleRoutes = router;
