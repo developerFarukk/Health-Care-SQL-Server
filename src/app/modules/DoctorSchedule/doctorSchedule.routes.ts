@@ -14,11 +14,13 @@ const router = express.Router();
  * 
  * Get all doctor schedule with filtering
  */
-// router.get(
-//     '/',
-//     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN, UserRole.DOCTOR, UserRole.PATIENT),
-//     DoctorScheduleController.getAllFromDB
-// );
+
+// get all deoctor Schedule route
+router.get(
+    '/',
+    auth(UserRole.SUPER_ADMIN, UserRole.ADMIN, UserRole.DOCTOR, UserRole.PATIENT),
+    DoctorScheduleController.getAllDoctorShedule
+);
 
 // get my schedule
 router.get(
