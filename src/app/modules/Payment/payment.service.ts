@@ -1,6 +1,6 @@
 
 
-import { PaymentStatus } from '@prisma/client';
+import prisma from '../../shared/prisma';
 
 const initPayment = async (appointmentId: string) => {
     const paymentData = await prisma.payment.findFirstOrThrow({
@@ -26,6 +26,7 @@ const initPayment = async (appointmentId: string) => {
     }
 
     const result = await SSLService.initPayment(initPaymentData);
+    
     return {
         paymentUrl: result.GatewayPageURL
     };
