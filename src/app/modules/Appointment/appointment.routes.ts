@@ -16,11 +16,14 @@ const router = express.Router();
  * Get all appointment with filtering
  * Only accessable for Admin & Super Admin
  */
-// router.get(
-//     '/',
-//     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
-//     AppointmentController.getAllFromDB
-// );
+
+
+// get All Apoinment Route
+router.get(
+    '/',
+    auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
+    AppointmentController.getAllApoinment
+);
 
 
 // get my apoinment route
