@@ -41,6 +41,9 @@ const initPayment = async (paymentData: IPaymentData) => {
             ship_country: 'N/A',
         };
 
+        console.log(data);
+        
+
         const response = await axios({
             method: 'post',
             url: config.ssl.sslPaymentApi,
