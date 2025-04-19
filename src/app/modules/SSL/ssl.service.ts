@@ -7,6 +7,7 @@ import config from "../../config";
 import axios from 'axios';
 
 const initPayment = async (paymentData: IPaymentData) => {
+    
     try {
         const data = {
             store_id: config.ssl.storeId,
@@ -41,7 +42,7 @@ const initPayment = async (paymentData: IPaymentData) => {
             ship_country: 'N/A',
         };
 
-        console.log(data);
+        // console.log(data);
         
 
         const response = await axios({
@@ -50,6 +51,9 @@ const initPayment = async (paymentData: IPaymentData) => {
             data: data,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         });
+
+        console.log(response);
+        
 
         return response.data;
     }

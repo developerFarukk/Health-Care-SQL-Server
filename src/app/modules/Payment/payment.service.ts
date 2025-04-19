@@ -4,6 +4,7 @@ import prisma from '../../shared/prisma';
 import { SSLService } from '../SSL/ssl.service';
 
 const initPaymentIntoDB = async (appointmentId: string) => {
+
     const paymentData = await prisma.payment.findFirstOrThrow({
         where: {
             appointmentId
@@ -17,6 +18,9 @@ const initPaymentIntoDB = async (appointmentId: string) => {
         }
     });
 
+    // console.log(paymentData);
+    
+
     const initPaymentData = {
         amount: paymentData.amount,
         transactionId: paymentData.transactionId,
@@ -26,10 +30,13 @@ const initPaymentIntoDB = async (appointmentId: string) => {
         phoneNumber: paymentData.appointment.patient.contactNumber
     }
 
-    console.log(initPaymentData);
+    // console.log(initPaymentData);
     
 
     const result = await SSLService.initPayment(initPaymentData);
+
+    // console.log(result);
+    
 
     return {
         paymentUrl: result.GatewayPageURL
