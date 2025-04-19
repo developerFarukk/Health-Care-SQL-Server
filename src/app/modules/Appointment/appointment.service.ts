@@ -2,14 +2,19 @@
 
 import { v4 as uuidv4 } from 'uuid';
 import httpStatus from "http-status";
+import { IAuthUser } from '../../interfaces/common';
+import prisma from '../../shared/prisma';
 
 
-const createAppointment = async (user: IAuthUser, payload: any) => {
+// Create Apoinment
+const createAppointmentIntoDB = async (user: IAuthUser, payload: any) => {
+
     const patientData = await prisma.patient.findUniqueOrThrow({
         where: {
             email: user?.email
         }
     });
+    
 
     const doctorData = await prisma.doctor.findUniqueOrThrow({
         where: {
@@ -17,13 +22,18 @@ const createAppointment = async (user: IAuthUser, payload: any) => {
         }
     });
 
-    await prisma.doctorSchedules.findFirstOrThrow({
+    
+   const alow = await prisma.doctorSchedules.findFirstOrThrow({
         where: {
             doctorId: doctorData.id,
             scheduleId: payload.scheduleId,
             isBooked: false
         }
     });
+
+    // console.log(alow);
+    
+    
 
     const videoCallingId: string = uuidv4();
 
@@ -60,13 +70,16 @@ const createAppointment = async (user: IAuthUser, payload: any) => {
 
         const transactionId = "PH-HealthCare-" + today.getFullYear() + "-" + today.getMonth() + "-" + today.getDay() + "-" + today.getHours() + "-" + today.getMinutes();
 
-        await tx.payment.create({
+       const data = await tx.payment.create({
             data: {
                 appointmentId: appointmentData.id,
                 amount: doctorData.appointmentFee,
                 transactionId
             }
         })
+
+        // console.log(data);
+        
 
         return appointmentData;
     })
@@ -279,5 +292,5 @@ const createAppointment = async (user: IAuthUser, payload: any) => {
 // }
 
 export const AppointmentService = {
-    createAppointment,
+    createAppointmentIntoDB,
 }

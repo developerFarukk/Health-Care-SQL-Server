@@ -2,6 +2,10 @@
 
 import express from 'express'
 import { UserRole } from '@prisma/client';
+import auth from '../../middlewares/auth';
+import validateRequest from '../../middlewares/validateRequest';
+import { AppointmentValidation } from './appointment.validation';
+import { AppointmentController } from './appointment.controller';
 
 
 const router = express.Router();
@@ -24,8 +28,10 @@ const router = express.Router();
 //     AppointmentController.getMyAppointment
 // )
 
+
+// Create Apoinment route
 router.post(
-    '/',
+    '/create-apoinment',
     auth(UserRole.PATIENT),
     validateRequest(AppointmentValidation.createAppointment),
     AppointmentController.createAppointment
