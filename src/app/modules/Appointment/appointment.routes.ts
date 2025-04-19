@@ -22,11 +22,13 @@ const router = express.Router();
 //     AppointmentController.getAllFromDB
 // );
 
-// router.get(
-//     '/my-appointment',
-//     auth(UserRole.PATIENT, UserRole.DOCTOR),
-//     AppointmentController.getMyAppointment
-// )
+
+// get my apoinment route
+router.get(
+    '/my-appointment',
+    auth(UserRole.PATIENT, UserRole.DOCTOR),
+    AppointmentController.getMyAppointment
+)
 
 
 // Create Apoinment route
