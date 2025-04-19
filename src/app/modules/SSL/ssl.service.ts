@@ -2,6 +2,9 @@
 
 import ApiError from "../../errors/ApiError";
 import httpStatus from "http-status";
+import { IPaymentData } from "./ssl.interface";
+import config from "../../config";
+import axios from 'axios';
 
 const initPayment = async (paymentData: IPaymentData) => {
     try {
@@ -14,7 +17,7 @@ const initPayment = async (paymentData: IPaymentData) => {
             success_url: config.ssl.successUrl,
             fail_url: config.ssl.failUrl,
             cancel_url: config.ssl.cancelUrl,
-            ipn_url: 'http://localhost:3030/ipn',
+            ipn_url: 'http://localhost:5001/ipn',
             shipping_method: 'N/A',
             product_name: 'Appointment',
             product_category: 'Service',
