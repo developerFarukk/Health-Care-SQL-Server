@@ -4,10 +4,10 @@ import express, { Application, NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import httpStatus from 'http-status';
 import cookieParser from 'cookie-parser';
-// import { AppointmentService } from './app/modules/Appointment/appointment.service';
-// import cron from 'node-cron'
+import cron from 'node-cron'
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
 import router from './app/routes';
+import { AppointmentService } from './app/modules/Appointment/appointment.service';
 
 const app: Application = express();
 
@@ -25,14 +25,14 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-// cron.schedule('* * * * *', () => {
-//     try {
-//         AppointmentService.cancelUnpaidAppointments();
-//     }
-//     catch (err) {
-//         console.error(err);
-//     }
-// });
+cron.schedule('* * * * *', () => {
+    try {
+        AppointmentService.cancelUnpaidAppointments();
+    }
+    catch (err) {
+        console.error(err);
+    }
+});
 
 app.get('/', (req: Request, res: Response) => {
     res.send({
