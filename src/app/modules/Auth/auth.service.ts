@@ -1,7 +1,6 @@
 
 import { UserStatus } from "@prisma/client";
 import * as bcrypt from 'bcrypt'
-
 import ApiError from "../../errors/ApiError";
 import httpStatus from "http-status";
 import prisma from "../../shared/prisma";
@@ -153,10 +152,10 @@ const forgotPasswordIntoDB = async (payload: { email: string }) => {
 
 
 // reset pasword
-const resetPasswordIntoDB = async (token: string, payload: { id: string, password: string }) => {
+const resetPasswordIntoDB = async (token: string, payload: { id: string, newPassword: string }) => {
     // console.log({ token, payload })
 
-    const userData = await prisma.user.findUniqueOrThrow({
+    await prisma.user.findUniqueOrThrow({
         where: {
             id: payload.id,
             status: UserStatus.ACTIVE
@@ -165,12 +164,21 @@ const resetPasswordIntoDB = async (token: string, payload: { id: string, passwor
 
     const isValidToken = jwtHelpers.verifyToken(token, config.jwt.reset_pass_secret as Secret)
 
+    // console.log(isValidToken);
+    
+    
+
     if (!isValidToken) {
         throw new ApiError(httpStatus.FORBIDDEN, "Forbidden!")
     }
 
+    // console.log(payload.newPassword);
+    
+
     // hash password
-    const password = await bcrypt.hash(payload.password, 12);
+    const password = await bcrypt.hash(payload.newPassword, 12);
+
+    // console.log(password);
 
     // update into database
     await prisma.user.update({
@@ -181,6 +189,11 @@ const resetPasswordIntoDB = async (token: string, payload: { id: string, passwor
             password
         }
     })
+
+    // console.log(result);
+    
+
+    // return result
 };
 
 export const AuthServices = {
