@@ -77,7 +77,7 @@ const initPayment = async (paymentData: IPaymentData) => {
 //     }
 // }
 
-// jhdjfghjedrgb.232 
+
 
 export const SSLService = {
     initPayment,
