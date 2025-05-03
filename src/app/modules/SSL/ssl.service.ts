@@ -77,7 +77,6 @@ const initPayment = async (paymentData: IPaymentData) => {
 //     }
 // }
 
-// hsagdvhs72364
 
 export const SSLService = {
     initPayment,
