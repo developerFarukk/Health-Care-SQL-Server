@@ -77,7 +77,6 @@ const initPayment = async (paymentData: IPaymentData) => {
 //     }
 // }
 
-// hasdgafsd
 
 export const SSLService = {
     initPayment,
