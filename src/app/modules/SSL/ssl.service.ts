@@ -62,7 +62,6 @@ const initPayment = async (paymentData: IPaymentData) => {
     }
 };
 
-// jhdsfh
 
 
 // const validatePayment = async (payload: any) => {
