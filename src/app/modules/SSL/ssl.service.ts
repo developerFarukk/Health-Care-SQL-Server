@@ -62,7 +62,7 @@ const initPayment = async (paymentData: IPaymentData) => {
     }
 };
 
-// jhsgdfg
+// dfgdf
 
 // const validatePayment = async (payload: any) => {
 //     try {
